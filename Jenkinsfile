@@ -25,7 +25,9 @@ pipeline {
         	//     // sh "docker login -u ${env.registryUser} -p ${env.registryPass}"
             //     // sh 'docker push thuuha/jenkintest'
             // }
-            withDockerRegistry([ credentialsId: "dockerhubaccount", url: "hub.docker.com" ])
+            withDockerRegistry([ credentialsId: "dockerhubaccount", url: "" ]){
+                sh 'docker push thuuha/jenkintest'
+            }
         }
     }
         stage ('test') {
