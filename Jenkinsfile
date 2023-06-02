@@ -25,11 +25,11 @@ pipeline {
                 sh 'docker push thuuha/jenkintest'
             }
         }
+    }
         stage ('test') {
             steps {
                 sh "echo test "
             }
         }
-    }
 }
 }
