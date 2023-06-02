@@ -26,7 +26,7 @@ pipeline {
             //     // sh 'docker push thuuha/jenkintest'
             // }
             withDockerRegistry([ credentialsId: "dockerhubaccount", url: "" ]){
-                sh 'docker push thuuha/jenkintest'
+                dockerImage.push()
             }
         }
     }
