@@ -22,7 +22,10 @@ pipeline {
             steps {
                 script{
                 withDockerRegistry([ credentialsId: env.registryCredential, url: "https://registry-1.docker.io/" ]) {
-                 dockerImage.push()}
+                //  dockerImage.push()
+                 }
+                 sh 'docker push thuuha/jenkintest '
+                
             }
     }
         // stage ('test') {
