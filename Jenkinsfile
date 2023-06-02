@@ -2,7 +2,6 @@ pipeline {
     agent any
     
     environment{
-        registry = "thuuha/jenkintest"
         registryCredential = "jenkin"
         registryPass= "jenkinPassword"
         registryUser= "jenkinUser"
@@ -22,10 +21,11 @@ pipeline {
 
         stage ('push') {
             steps {
-                withCredentials([usernamePassword(credentialsId: env.registryCredential)]) {
-        	    sh "docker login -u ${env.registryUser} -p ${env.registryPass}"
-                sh 'docker push thuuha/jenkintest'
-            }
+            //     withCredentials([usernamePassword(credentialsId: env.registryCredential)]) {
+        	//     // sh "docker login -u ${env.registryUser} -p ${env.registryPass}"
+            //     // sh 'docker push thuuha/jenkintest'
+            // }
+            withDockerRegistry([ credentialsId: "dockerhubaccount", url: "hub.docker.com" ])
         }
     }
         stage ('test') {
