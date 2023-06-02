@@ -6,11 +6,11 @@ pipeline {
         registryCredential = "jenkin"
     }
     stages {
-        stage ('run python script'){
-            steps {
-                sh 'python3 main.py'
-            }
-        }
+        // stage ('run python script'){
+        //     steps {
+        //         sh 'uvicorn main:app --host 0.0.0.0 --port 8000'
+        //     }
+        // }
         stage ('build images'){
             steps {
                 sh 'docker build -t thuuha/jenkintest .'
