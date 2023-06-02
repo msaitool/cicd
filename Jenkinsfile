@@ -12,6 +12,7 @@ pipeline {
         //     }
         // }
         stage ('build images'){
+
             steps {
                 sh 'docker build -t thuuha/jenkintest .'
             }
@@ -22,6 +23,11 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'jenkin', passwordVariable: 'jenkinPassword', usernameVariable: 'jenkinUser')]) {
         	    sh "docker login -u ${env.jenkinUser} -p ${env.jenkinPassword}"
                 sh 'docker push thuuha/jenkintest'
+            }
+        }
+        stage ('test') {
+            steps {
+                sh "echo test "
             }
         }
     }
