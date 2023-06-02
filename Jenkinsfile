@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment{
-        registryCredential = "jenkin"
+        registryCredential = credentials('jenkin')
         // registryPass= "jenkinPassword"
         // registryUser= "jenkinUser"
     }
@@ -21,14 +21,22 @@ pipeline {
 
         stage ('push') {
             steps {
-            //     withCredentials([usernamePassword(credentialsId: env.registryCredential)]) {
-        	//     // sh "docker login -u ${env.registryUser} -p ${env.registryPass}"
-            //     // sh 'docker push thuuha/jenkintest'
-            // }
-            docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
+                script {
+                    docker.withRegistry('', registryCredential) {
+                        def dockerImage = docker.image('thuuha/jenkintest')
+                        dockerImage.push()
+                    }
+                }
             }
-        }
+        //     steps {
+        //     //     withCredentials([usernamePassword(credentialsId: env.registryCredential)]) {
+        // 	//     // sh "docker login -u ${env.registryUser} -p ${env.registryPass}"
+        //     //     // sh 'docker push thuuha/jenkintest'
+        //     // }
+        //     docker.withRegistry( '', registryCredential ) {
+        //     dockerImage.push()
+        //     }
+        // }
     }
         stage ('test') {
             steps {
