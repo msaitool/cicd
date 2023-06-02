@@ -21,7 +21,7 @@ pipeline {
         stage ('push') {
             steps {
                 script{
-                withDockerRegistry([ credentialsId: "dockerhubaccount", url: "" ]) {
+                withDockerRegistry([ credentialsId: "jenkin", url: "" ]) {
                  dockerImage.push()}
             }
     }
