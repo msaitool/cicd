@@ -20,8 +20,9 @@ pipeline {
         }
         stage ('push') {
             steps {
+                script{
                 withDockerRegistry([ credentialsId: "dockerhubaccount", url: "" ]) {
-                 dockerImage.push()
+                 dockerImage.push()}
             }
     }
         // stage ('test') {
