@@ -20,12 +20,8 @@ pipeline {
         }
         stage ('push') {
             steps {
-                script {
-                    docker.withRegistry('', registryCredential) {
-                        def dockerImage = docker.image('thuuha/jenkintest')
-                        dockerImage.push()
-                    }
-                }
+                withDockerRegistry([ credentialsId: "dockerhubaccount", url: "" ]) {
+                 dockerImage.push()
             }
     }
         // stage ('test') {
