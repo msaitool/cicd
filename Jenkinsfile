@@ -18,7 +18,6 @@ pipeline {
                 sh 'docker build -t thuuha/jenkintest .'
             }
         }
-
         stage ('push') {
             steps {
                 script {
@@ -28,20 +27,11 @@ pipeline {
                     }
                 }
             }
+    }
+        // stage ('test') {
         //     steps {
-        //     //     withCredentials([usernamePassword(credentialsId: env.registryCredential)]) {
-        // 	//     // sh "docker login -u ${env.registryUser} -p ${env.registryPass}"
-        //     //     // sh 'docker push thuuha/jenkintest'
-        //     // }
-        //     docker.withRegistry( '', registryCredential ) {
-        //     dockerImage.push()
+        //         sh "echo test "
         //     }
         // }
-    }
-        stage ('test') {
-            steps {
-                sh "echo test "
-            }
-        }
 }
 }
