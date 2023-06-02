@@ -3,8 +3,8 @@ pipeline {
     
     environment{
         registryCredential = "jenkin"
-        registryPass= "jenkinPassword"
-        registryUser= "jenkinUser"
+        // registryPass= "jenkinPassword"
+        // registryUser= "jenkinUser"
     }
     stages {
         // stage ('run python script'){
@@ -25,8 +25,8 @@ pipeline {
         	//     // sh "docker login -u ${env.registryUser} -p ${env.registryPass}"
             //     // sh 'docker push thuuha/jenkintest'
             // }
-            withDockerRegistry([ credentialsId: "dockerhubaccount", url: "" ]){
-                dockerImage.push()
+            docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
             }
         }
     }
