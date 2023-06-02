@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment{
-        registryCredential = credentials('jenkin')
+        registryCredential = 'jenkin'
         // registryPass= "jenkinPassword"
         // registryUser= "jenkinUser"
     }
