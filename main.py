@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from routers import route
 
 config =  dotenv_values(".env")
-
+ha= 3
 app = FastAPI()
 # client = MongoClient(uri)
 @app.on_event("startup")
